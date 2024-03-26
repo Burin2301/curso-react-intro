@@ -1,0 +1,52 @@
+.loadingTodo-container{
+    position: relative;
+    display: flex;
+    
+    align-items: center;
+    width: 100%;
+    background-color: rgb(204, 202, 202);
+    border-radius: .8rem;
+}
+
+
+.loadingTodo-completeIcon{
+    width: 40px;
+    margin: 0 2rem;
+}
+
+.loadingTodo-text{
+    text-align: start;
+    font-weight: 600;
+}
+
+.loadingTodo-DeleteIcon{
+    height: 44px;
+    width: 44px;
+    position: absolute;
+    right: 30px;
+    top: -20px;
+    background-color: rgb(204, 202, 202);
+    border-radius: 50%;
+}
+
+.loadingTodo-container,
+.loadingTodo-completeIcon,
+.loadingTodo-text,
+.loadingTodo-DeleteIcon{
+    background: linear-gradient(90deg,rgb(117, 116, 116),rgb(204, 202, 202)) ;
+    background-size: 400% 400%;
+    animation: loadingAnimation 3s ease-in-out infinite;
+}
+
+@keyframes loadingAnimation {
+    0%{
+        background-position: 0% 50%;
+    }    
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 50% 0%;
+    }
+
+}
