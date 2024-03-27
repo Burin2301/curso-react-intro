@@ -8,6 +8,7 @@
     padding: 0 0 1rem;
 
     cursor: pointer;
+    border: none;
 
     font-size: 3rem;
     color: white;
@@ -17,7 +18,9 @@
     border-radius: 50%;
 
     transform: rotate(0);
-    transition: 1 ease;
+    transition: .1 ease-in;
+
+    z-index: 10;
 }
 
 .create-todo-button:hover{

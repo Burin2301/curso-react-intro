@@ -6,56 +6,64 @@ import { CreateTodoButton } from '../Components/CreateTodoButton';
 import { TodosError } from '../Components/TodosError';
 import { TodosLoading } from '../Components/TodosLoading';
 import { EmptyTodos } from '../Components/EmptyTodos';
+import { TodoContext } from '../Components/TodoContext';
+import { useContext } from 'react';
+import { Modal } from '../Components/Modal';
+import { TodoForm } from '../Components/TodoForm';
 
-function AppUI(
-    {
-        completedTodos,
-        totalTodos,
-        searchValue,
-        searchedTodos,
-        setSearchValue,
+function AppUI(){
+
+    const {
+        searchedTodos,                    
         handleCompleteButton,
         handleDeleteButton,
         loading,
-        error
-    }
-){
+        error,
+        openModal
+    } = useContext(TodoContext)
+
     return(
         <>
             <TodoCounter
-                completed={completedTodos}
-                total={totalTodos} />
+                // completed={completedTodos}
+                // total={totalTodos}
+                 />
 
             <TodoSearch
-                searchValue={searchValue}
-                setSearchValue={setSearchValue} />
+                // searchValue={searchValue}
+                // setSearchValue={setSearchValue} 
+                />
+                <TodoList>
+                    {loading && (
+                        <>
+                            <TodosLoading />
+                            <TodosLoading />
+                            <TodosLoading />
+                        </>
+                    ) }
+                    {error && <TodosError />}
 
-            <TodoList>
-                {loading && (
-                    <>
-                        <TodosLoading />
-                        <TodosLoading />
-                        <TodosLoading />
-                    </>
-                ) }
-                {error && <TodosError />}
+                    {
+                        (!loading && searchedTodos.length === 0) && <EmptyTodos />
+                    }
 
-                {
-                    (!loading && searchedTodos.length === 0) && <EmptyTodos />
-                }
-
-                {searchedTodos.map((item, index)=>(
-                    <TodoItem
-                        key={index}
+                    {searchedTodos.map((item, index)=>(
+                        <TodoItem
                         text={item.text}
-                        completed={item.completed}
+                        key={index}
                         onDelete={()=> handleDeleteButton(index)}
                         onComplete={()=> handleCompleteButton(index)} 
-                    />
-                ))}
-            </TodoList>
+                        completed={item.completed} />
+                        ))}
+                    </TodoList>
 
             <CreateTodoButton />
+
+            {openModal && (
+                <Modal>
+                    <TodoForm />
+                </Modal>
+            )}
         </>
     )
 }
