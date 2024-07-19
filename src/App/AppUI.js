@@ -33,29 +33,28 @@ function AppUI(){
                 // searchValue={searchValue}
                 // setSearchValue={setSearchValue} 
                 />
-                <TodoList>
-                    {loading && (
-                        <>
-                            <TodosLoading />
-                            <TodosLoading />
-                            <TodosLoading />
-                        </>
-                    ) }
-                    {error && <TodosError />}
-
+            <TodoList>
+                {loading && (
+                    <>
+                        <TodosLoading />
+                        <TodosLoading />
+                        <TodosLoading />
+                    </>
+                ) }
+                {error && <TodosError />}
                     {
                         (!loading && searchedTodos.length === 0) && <EmptyTodos />
                     }
 
-                    {searchedTodos.map((item, index)=>(
-                        <TodoItem
-                        text={item.text}
-                        key={index}
-                        onDelete={()=> handleDeleteButton(index)}
-                        onComplete={()=> handleCompleteButton(index)} 
-                        completed={item.completed} />
-                        ))}
-                    </TodoList>
+                {searchedTodos.map((item, index)=>(
+                    <TodoItem
+                    text={item.text}
+                    key={index}
+                    onDelete={()=> handleDeleteButton(index)}
+                    onComplete={()=> handleCompleteButton(index)} 
+                    completed={item.completed} />
+                ))}
+            </TodoList>
 
             <CreateTodoButton />
 
